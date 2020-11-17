@@ -24,7 +24,7 @@
       <!-- <ion-item (click)="openCardAsk(card)"> -->
       <ion-item (click)="openModal(card)">
         <ion-label *ngIf="card.done == 0" color="dark">{{ card.phrase }}</ion-label>
-        <ion-label *ngIf="card.done == 1" color="primary">{{ card.phrase }}</ion-label>
+        <ion-label *ngIf="card.done == 1" color="success">{{ card.phrase }}</ion-label>
         <ion-label *ngIf="card.done == 2" color="danger">{{ card.phrase }}</ion-label>
       </ion-item>
 

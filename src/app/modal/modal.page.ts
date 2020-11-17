@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController, NavParams } from '@ionic/angular';
+import { ModalController, NavParams } from '@ionic/angular';
 
 @Component({
   selector: 'app-modal',
@@ -8,18 +8,59 @@ import { NavController, NavParams } from '@ionic/angular';
 })
 export class ModalPage implements OnInit {
   answered : String = ""
-  state: boolean = true
+  stateAnswer: boolean = false
+  verResposta: boolean = false
+  stateMessage: boolean  = false
+  
   constructor(
-    private navParams : NavParams) { }
+    private navParams : NavParams,
+    private modalCrtl: ModalController) { }
 
   ngOnInit() {
-    // console.log(card)
+    this.answered = ""
+    this.stateAnswer = false
+    this.verResposta = false
+    this.stateMessage = false
     console.log(this.navParams.data)
   }
 
   validarResposta($event){
-    this.state = false
+    if (this.answered.length < 1){
+      this.stateMessage = true
+      setTimeout(() => {
+        this.stateMessage = false
+      }, 3000);
+      return
+    }
+
+    if (this.answered.trim().toLowerCase() == this.navParams.data.answer.trim().toLowerCase()){
+      this.stateAnswer = true
+      this.navParams.data.done = 1
+      this.modalCrtl.dismiss(this.navParams.data)
+    }
+    else{
+      this.stateAnswer = true
+      if (this.navParams.data.trys > 1){
+        this.navParams.data.trys -= 1
+      }
+      else{
+        this.navParams.data.done = 2
+        setTimeout(() => {
+          this.stateAnswer = false
+          this.modalCrtl.dismiss(this.navParams.data)
+        }, 3000);
+      }
+    }
+    
     console.log(this.navParams.data)
     console.log(this.answered)
+    
+  }
+
+  exibirResposta(){
+    this.verResposta = true
+    setTimeout(() => {
+      this.verResposta = false
+    }, 3000);
   }
 }

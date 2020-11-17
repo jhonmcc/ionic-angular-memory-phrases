@@ -8,7 +8,7 @@ import { AlertController, ModalController, ToastController } from '@ionic/angula
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  cards : any[] = [{phrase: 'hello', answer: 'hola', trys: 3, done: 0}]
+  cards : any[] = [{phrase: 'hello', answer: 'hola', trys: 2, done: 0}]
 
   constructor(
     private alertCtrl : AlertController,
@@ -25,21 +25,24 @@ export class HomePage {
     let modal = await this.modalCtrl.create({
       component: ModalPage,
       cssClass: 'custom-modal',
-      componentProps: card
+      componentProps: card,
+      showBackdrop: true,
+      backdropDismiss: true,
+      keyboardClose: false
     })
     // console.log(card)
-    return await modal.present()
+
+    await modal.present()
+    let resModal = await modal.onDidDismiss()
     
+    // this.updateLocalStorage()
+    console.log('from modal\n' + resModal.data)
+    card.done = resModal.data.done
+    console.log(this.cards)
   }
 
   exibeInfo(){
     alert('yay')
-  }
-
-  controlTrys(card :any){
-    if (card.trys > 0){
-      card.trys--;
-    }
   }
 
   async openCardAsk(card : any){
@@ -61,7 +64,6 @@ export class HomePage {
           }
           else{
             if (card.trys > 1){
-              this.controlTrys(card)
               this.openCardAsk(card)
               console.log(card)
             }
@@ -142,8 +144,8 @@ export class HomePage {
     }
     form.phrase = form.phrase.trim()
     form.answer = form.answer.trim()
-    form['trys'] = 3
-    form['done'] = true
+    form['trys'] = 2
+    form['done'] = 0
     // console.log(form)
     this.cards.push(form)
     // console.log(this.cards)
