@@ -1,20 +1,49 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+    <ion-buttons slot="end" (click)="exibeInfo()">
+      <ion-icon name="information-circle" color="danger"></ion-icon>
+    </ion-buttons>
+    <ion-title>Cartões de memorização</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+
+  <ion-list>
+    <ion-item *ngIf="cards.length < 1">
+      <label>Nenhum card cadastrado</label>
+    </ion-item>
+
+    <ion-item-sliding *ngFor="let card of cards">
+      <ion-item-options side="start" >
+        <ion-item-option (click)="deleteCard(card)" color="danger">
+          <ion-icon name="trash"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+
+      <!-- <ion-item (click)="openCardAsk(card)"> -->
+      <ion-item (click)="openModal(card)">
+        <ion-label *ngIf="card.done == 0" color="dark">{{ card.phrase }}</ion-label>
+        <ion-label *ngIf="card.done == 1" color="primary">{{ card.phrase }}</ion-label>
+        <ion-label *ngIf="card.done == 2" color="danger">{{ card.phrase }}</ion-label>
+      </ion-item>
+
+      <ion-item-options side="end" >
+        <ion-item-option (click)="deleteCard(card)" color="danger">
+          <ion-icon name="trash"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+
+    </ion-item-sliding>
+
+  </ion-list>
+    
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed"> 
+    <ion-fab-button color="success" (click)="addCard()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 
   <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
   </div>
 </ion-content>

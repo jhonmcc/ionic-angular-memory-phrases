@@ -1,0 +1,14 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>modal</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <h4>Qual a traduçao da frase:</h4>
+  <h5>{{ navParams.data.phrase }}</h5>
+  <ion-input type="text" [(ngModel)]="answered" placeholder="Sua resposta aqui..."></ion-input>
+  <ion-button (click)="validarResposta($event)">Validar</ion-button>
+  <h5 *ngIf="state == true" hidden>resposta</h5>
+  <h5 *ngIf="state == false">resposta</h5>
+</ion-content>
