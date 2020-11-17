@@ -21,7 +21,8 @@ export class ModalPage implements OnInit {
     this.stateAnswer = false
     this.verResposta = false
     this.stateMessage = false
-    console.log(this.navParams.data)
+    this.navParams.data.done = 0
+    // console.log(this.navParams.data)
   }
 
   validarResposta($event){
@@ -36,7 +37,11 @@ export class ModalPage implements OnInit {
     if (this.answered.trim().toLowerCase() == this.navParams.data.answer.trim().toLowerCase()){
       this.stateAnswer = true
       this.navParams.data.done = 1
-      this.modalCrtl.dismiss(this.navParams.data)
+      setTimeout(() => {
+        this.stateAnswer = false
+        this.modalCrtl.dismiss(this.navParams.data)
+      }, 4000);
+      
     }
     else{
       this.stateAnswer = true
@@ -48,19 +53,17 @@ export class ModalPage implements OnInit {
         setTimeout(() => {
           this.stateAnswer = false
           this.modalCrtl.dismiss(this.navParams.data)
-        }, 3000);
+        }, 4000);
+        
       }
     }
-    
-    console.log(this.navParams.data)
-    console.log(this.answered)
-    
+  
   }
 
   exibirResposta(){
     this.verResposta = true
     setTimeout(() => {
       this.verResposta = false
-    }, 3000);
+    }, 4000);
   }
 }

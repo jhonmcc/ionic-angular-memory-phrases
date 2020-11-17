@@ -1,6 +1,6 @@
 import { ModalPage } from './../modal/modal.page';
 import { Component } from '@angular/core';
-import { AlertController, ModalController, ToastController } from '@ionic/angular';
+import { AlertController, IonBackdrop, ModalController, ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -34,10 +34,12 @@ export class HomePage {
 
     await modal.present()
     let resModal = await modal.onDidDismiss()
-    
-    // this.updateLocalStorage()
-    console.log('from modal\n' + resModal.data)
+    if (resModal.role == 'backdrop'){
+      console.log('o modal foi fechado')
+      return
+    }
     card.done = resModal.data.done
+    this.updateLocalStorage()
     console.log(this.cards)
   }
 
@@ -45,60 +47,6 @@ export class HomePage {
     alert('yay')
   }
 
-  async openCardAsk(card : any){
-    let openCard = await this.alertCtrl.create({
-      subHeader: 'Qual a tradução da frase:',
-      message: '<h4>' + card.phrase + '</h4>',
-      cssClass: 'askCard',
-      inputs: [{
-        name: 'answer',
-        type: 'text',
-        placeholder: 'insira a resposta aqui'
-      }],
-      buttons: [{
-        text: 'Ver',
-        cssClass: 'warning',
-        handler: (form) => {
-          if (form.answer.trim().toLowerCase() == card.answer.toLowerCase()){
-            this.openCardAnswer(card)
-          }
-          else{
-            if (card.trys > 1){
-              this.openCardAsk(card)
-              console.log(card)
-            }
-            else{
-              card.trys = 3
-              card.done = false
-              this.updateLocalStorage()
-              // console.log('exedeu tentativa')
-              return
-            }          
-          }
-        }
-      },
-      {
-        text: 'Tentativas restantes: ' + card.trys
-      }]
-    })
-    await openCard.present()
-  }
-
-  async openCardAnswer(card : any){
-    let cardAnswer = await this.alertCtrl.create({
-      header: 'Correto!',
-      subHeader: card.phrase,
-      message: card.answer,
-      buttons: [{
-        text: 'Ok',
-        role: 'cancel'
-      }]      
-    })
-    card.trys = 3
-    card.done = true
-    this.updateLocalStorage()
-    await cardAnswer.present()
-  }
 
   async addCard(){
     let addCard = await this.alertCtrl.create({

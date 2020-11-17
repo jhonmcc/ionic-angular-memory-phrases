@@ -7,10 +7,10 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content>
 
-  <ion-list>
-    <ion-item *ngIf="cards.length < 1">
+  <ion-list lines="full">
+    <ion-item *ngIf="cards.length < 1" lines="inset">
       <label>Nenhum card cadastrado</label>
     </ion-item>
 
@@ -44,6 +44,4 @@
     </ion-fab-button>
   </ion-fab>
 
-  <div id="container">
-  </div>
 </ion-content>

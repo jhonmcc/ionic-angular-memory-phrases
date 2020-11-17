@@ -1,13 +1,14 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>modal</ion-title>
-  </ion-toolbar>
-</ion-header>
+<!-- <ion-fab vertical="top" horizontal="end" edge slot="fixed"> 
+  <ion-fab-button (click)="addCard()" color="white">
+    <ion-icon name="close-circle"></ion-icon>
+  </ion-fab-button>
+</ion-fab> -->
 
 <ion-content>
   <h4>Qual a traduçao da frase:</h4>
   <h5>{{ navParams.data.phrase }}</h5>
   <ion-input type="text" [(ngModel)]="answered" placeholder="Sua resposta aqui..."></ion-input>
+  <br>
   <ion-button color="warning" (click)="exibirResposta($event)">Ver resposta</ion-button>
   <ion-button (click)="validarResposta($event)">Validar</ion-button>
   
