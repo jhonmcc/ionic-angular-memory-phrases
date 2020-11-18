@@ -1,6 +1,6 @@
 import { ModalPage } from './../modal/modal.page';
 import { Component } from '@angular/core';
-import { AlertController, IonBackdrop, ModalController, ToastController } from '@ionic/angular';
+import { AlertController, ModalController, ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -8,7 +8,7 @@ import { AlertController, IonBackdrop, ModalController, ToastController } from '
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  cards : any[] = [{phrase: 'hello', answer: 'hola', trys: 2, done: 0}]
+  cards : any[] = []//[{phrase: 'hello', answer: 'hola', trys: 2, done: 0}]
 
   constructor(
     private alertCtrl : AlertController,
@@ -50,7 +50,7 @@ export class HomePage {
 
   async addCard(){
     let addCard = await this.alertCtrl.create({
-      header: "Adicionar Cartão",
+      header: "Adicionar frase",
       cssClass: 'custom-alert',
       inputs: [{
         name: 'phrase',

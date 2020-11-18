@@ -5,39 +5,40 @@
 </ion-fab> -->
 
 <ion-content>
-  <h4>Qual a traduçao da frase:</h4>
-  <h5>{{ navParams.data.phrase }}</h5>
-  <ion-input type="text" [(ngModel)]="answered" placeholder="Sua resposta aqui..."></ion-input>
-  <br>
-  <ion-button color="warning" (click)="exibirResposta($event)">Ver resposta</ion-button>
-  <ion-button (click)="validarResposta($event)">Validar</ion-button>
-  
+  <div class="container">
+    <h4>Qual a traduçao da frase:</h4>
+    <h5>{{ navParams.data.phrase }}</h5>
+    <ion-input type="text" [(ngModel)]="answered" placeholder="Sua resposta aqui..."></ion-input>
+    <ion-button color="warning" (click)="exibirResposta($event)">Ver resposta</ion-button>
+    <ion-button (click)="validarResposta($event)">Validar</ion-button>
+    
+    <ion-list lines="none">
+      <ion-item *ngIf="stateMessage == true">
+        <h5>É necessário inserir uma resposta.</h5>
+        <ion-icon name="alert-circle" color="warning" slot="end"></ion-icon>
+      </ion-item>
 
-  <ion-item *ngIf="stateMessage == true">
-    <h5>É necessário inserir uma resposta.</h5>
-    <ion-icon name="alert-circle" color="warning" slot="end"></ion-icon>
-  </ion-item>
-
-  <ion-item *ngIf="stateAnswer == false && navParams.data.done == 0" hidden>
-    <h5>Tentativas restantes {{ navParams.data.trys }}</h5>
-    <ion-icon name="checkmark-circle" color="warning" slot="end"></ion-icon>
-  </ion-item>
-  <ion-item *ngIf="stateAnswer == true && navParams.data.done == 0">
-    <h5>Tentativas restantes {{ navParams.data.trys }}</h5>
-    <ion-icon name="checkmark-circle" color="warning" slot="end"></ion-icon>
-  </ion-item>
-  <ion-item *ngIf="stateAnswer == true && navParams.data.done == 1">
-    <h5>{{ navParams.data.answer }}</h5>
-    <ion-icon name="checkmark-circle" color="success" slot="end"></ion-icon>
-  </ion-item>
-  <ion-item *ngIf="stateAnswer == true && navParams.data.done == 2">
-    <h5>{{ navParams.data.answer }}</h5>
-    <ion-icon name="close-circle" color="danger" slot="end"></ion-icon>
-  </ion-item>
-  
-  <ion-item *ngIf="verResposta == true">
-    <h5>{{ navParams.data.answer }}</h5>
-    <!-- <ion-icon name="checkmark-circle" color="success" slot="end"></ion-icon> -->
-  </ion-item>
-  <br>
+      <ion-item *ngIf="stateAnswer == false && navParams.data.done == 0" hidden>
+        <h5>Tentativas restantes {{ navParams.data.trys }}</h5>
+        <ion-icon name="checkmark-circle" color="warning" slot="end"></ion-icon>
+      </ion-item>
+      <ion-item *ngIf="stateAnswer == true && navParams.data.done == 0">
+        <h5>Tentativas restantes {{ navParams.data.trys }}</h5>
+        <ion-icon name="close-circle" color="warning" slot="end"></ion-icon>
+      </ion-item>
+      <ion-item *ngIf="stateAnswer == true && navParams.data.done == 1">
+        <h5>{{ navParams.data.answer }}</h5>
+        <ion-icon name="checkmark-circle" color="success" slot="end"></ion-icon>
+      </ion-item>
+      <ion-item *ngIf="stateAnswer == true && navParams.data.done == 2">
+        <h5>A resposta correta seria: <br>{{ navParams.data.answer }}</h5>
+        <ion-icon name="close-circle" color="danger" slot="end"></ion-icon>
+      </ion-item>
+      
+      <ion-item *ngIf="verResposta == true">
+        <h5>{{ navParams.data.answer }}</h5>
+        <!-- <ion-icon name="checkmark-circle" color="success" slot="end"></ion-icon> -->
+      </ion-item>
+    </ion-list>
+  </div>
 </ion-content>
