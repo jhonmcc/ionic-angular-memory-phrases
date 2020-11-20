@@ -1,3 +1,4 @@
+import { ModalInstructionsPage } from './../modal-instructions/modal-instructions.page';
 import { ModalPage } from './../modal/modal.page';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -15,7 +16,7 @@ import { HomePageRoutingModule } from './home-routing.module';
     IonicModule,
     HomePageRoutingModule
   ],
-  declarations: [HomePage, ModalPage],
-  entryComponents: [ModalPage]
+  declarations: [HomePage, ModalPage, ModalInstructionsPage],
+  entryComponents: [ModalPage, ModalInstructionsPage]
 })
 export class HomePageModule {}

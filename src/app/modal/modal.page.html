@@ -1,16 +1,20 @@
-<!-- <ion-fab vertical="top" horizontal="end" edge slot="fixed"> 
-  <ion-fab-button (click)="addCard()" color="white">
-    <ion-icon name="close-circle"></ion-icon>
-  </ion-fab-button>
-</ion-fab> -->
+<!-- <ion-toolbar>
+  <ion-buttons slot="end">
+    <ion-button (click)="fecharModal()">Voltar</ion-button>
+    <ion-icon name="close-circle" color="dark" slot="end"></ion-icon>
+  </ion-buttons>  
+</ion-toolbar> -->
 
 <ion-content>
+  <div align="right"><ion-icon name="close-circle" color="dark" (click)="fecharModal()"></ion-icon></div>
   <div class="container">
     <h4>Qual a traduçao da frase:</h4>
     <h5>{{ navParams.data.phrase }}</h5>
     <ion-input type="text" [(ngModel)]="answered" placeholder="Sua resposta aqui..."></ion-input>
-    <ion-button color="warning" (click)="exibirResposta($event)">Ver resposta</ion-button>
-    <ion-button (click)="validarResposta($event)">Validar</ion-button>
+    <div align="right">
+      <ion-button color="warning" (click)="exibirResposta($event)">Ver resposta</ion-button>
+      <ion-button (click)="validarResposta($event)">Validar</ion-button>
+    </div>
     
     <ion-list lines="none">
       <ion-item *ngIf="stateMessage == true">

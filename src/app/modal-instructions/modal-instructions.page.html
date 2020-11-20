@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Instruções de uso.</ion-title>
+    <ion-buttons slot="end" (click)="fecharModal()">
+      <ion-icon name="close-outline" color="dark"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="container">
+    <ion-text color="dark">
+      <h6>Adicionando uma frase para memorização:</h6>
+      <p>Clique no botao +, insira a frase no idioma que esta estudando e logo abaixo insira a tradução da mesma.</p>
+      <h6>Deletando uma frase já memorizada:</h6>
+      <p>Arrate para a direita ou esqueda no item que deseja deletar aparecerá um icone para deletar o mesmo.</p>
+      <h5>Treinando a memorização:</h5>
+      <p>clique em algum dos itens da lista cadastrada aparecerá uma janela pergunta a tradução da frase.
+      São ao total 2 tentivas após será informado a resposta correta e encerrada a tentativa.</p>
+      <h5>Recomendações:</h5>
+      <p>Faça uma tentativa por dia até a memorização da frase e se for possível escreva a mesma na folha, isso ajudará na memorização
+        de forma mais eficaz.
+      </p>
+    </ion-text>
+    <br>
+    <ion-button (click)="fecharModal()" expand="block">OK</ion-button>
+    <br>
+  </div>
+
+</ion-content>

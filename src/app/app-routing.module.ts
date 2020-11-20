@@ -14,7 +14,11 @@ const routes: Routes = [
   {
     path: 'modal',
     loadChildren: () => import('./modal/modal.module').then( m => m.ModalPageModule)
+  },  {
+    path: 'modal-instructions',
+    loadChildren: () => import('./modal-instructions/modal-instructions.module').then( m => m.ModalInstructionsPageModule)
   },
+
 ];
 
 @NgModule({

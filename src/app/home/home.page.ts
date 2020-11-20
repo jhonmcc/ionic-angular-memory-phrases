@@ -1,3 +1,4 @@
+import { ModalInstructionsPage } from './../modal-instructions/modal-instructions.page';
 import { ModalPage } from './../modal/modal.page';
 import { Component } from '@angular/core';
 import { AlertController, ModalController, ToastController } from '@ionic/angular';
@@ -21,6 +22,17 @@ export class HomePage {
       }
     }
 
+  async exibeInfo(){
+      let modal = await this.modalCtrl.create({
+        component: ModalInstructionsPage,
+        cssClass: 'modal-instructions',
+        showBackdrop: true,
+        backdropDismiss: true,
+        keyboardClose: true
+      })
+      return await modal.present()
+    }
+
   async openModal(card : any){
     let modal = await this.modalCtrl.create({
       component: ModalPage,
@@ -42,11 +54,6 @@ export class HomePage {
     this.updateLocalStorage()
     console.log(this.cards)
   }
-
-  exibeInfo(){
-    alert('yay')
-  }
-
 
   async addCard(){
     let addCard = await this.alertCtrl.create({

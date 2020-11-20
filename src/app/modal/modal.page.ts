@@ -60,6 +60,10 @@ export class ModalPage implements OnInit {
   
   }
 
+  fecharModal(){
+    this.modalCrtl.dismiss(this.navParams.data)
+  }
+
   exibirResposta(){
     this.verResposta = true
     setTimeout(() => {
